@@ -19,13 +19,19 @@ const port = process.env.PORT || 5000;
 //connect to database
 connectDB();
 
+// app.use(
+//   cors({
+//     origin: "http://localhost:5173",
+//     credentials: true,
+//   }),
+// );
+
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: ["http://localhost:5173", "https://lavilla-admin.vercel.app"],
     credentials: true,
   }),
 );
-
 //setup middleware
 app.use(cookieParser());
 app.use(express.json({ limit: "50mb" }));
