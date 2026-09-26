@@ -1,16 +1,12 @@
-/* @import "tailwindcss"; */
+@import "tailwindcss";
 
-
-/* 
-@media (min-width:300px) and (max-width:500px){
-    #boss{
-    @apply bg-amber-100 p-0
-
-    }
-  #header{
-    color: yellow;
+@keyframes fadeInZoom {
+  0% {
+    opacity: 0;
+    transform: scale(1.1); /* تبدأ تكبر شوية وتنكمش للحجم الطبيعي */
   }
-  #header #link h1{
-    @apply text-3xl font-extralight font-bold text-amber-700
+  100% {
+    opacity: 1;
+    transform: scale(1);
   }
-} */
+}

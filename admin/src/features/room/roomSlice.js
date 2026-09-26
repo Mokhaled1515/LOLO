@@ -20,6 +20,7 @@ export const createRoom = createAsyncThunk(
           "Content-Type": "application/json",
         },
         method: "POST",
+        credentials: "include",
         body: JSON.stringify(roomData),
       });
       if (!res.ok) {
@@ -58,13 +59,15 @@ export const updateRoom = createAsyncThunk(
   "/room/update",
   async (roomData, thunkApi) => {
     try {
-      const { roomId, ...reset } = roomData;
+      // const { roomId, ...reset } = roomData;
+      const { roomId, ...roomRest } = roomData;
       const res = await fetch(`/api/rooms/${roomId}`, {
         headers: {
           "Content-Type": "application/json",
         },
         method: "PUT",
-        body: JSON.stringify(reset),
+        credentials: "include",
+        body: JSON.stringify(roomRest),
       });
 
       const data = await res.json();
@@ -85,6 +88,7 @@ export const deleteRoom = createAsyncThunk(
     try {
       const res = await fetch(`/api/rooms/${roomId}`, {
         method: "DELETE",
+        credentials: "include",
       });
       const data = await res.json();  
       if (!res.ok) {
@@ -129,7 +133,8 @@ export const roomSlice = createSlice({
       .addCase(getRooms.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
-        state.rooms = action.payload;
+        // state.rooms = action.payload;
+        state.rooms = Array.isArray(action.payload) ? action.payload : action.payload.rooms || [];
       })
       .addCase(getRooms.rejected, (state, action) => {
         state.isLoading = false;
@@ -156,7 +161,8 @@ export const roomSlice = createSlice({
         state.isLoading = false;
         state.isSuccess = true;
         state.rooms = state.rooms.filter(
-          (room) => room._id != action.payload.id
+          // (room) => room._id != action.payload.id
+          (room) => room._id.toString() !== action.payload.id.toString()
         );
       })
       .addCase(deleteRoom.rejected, (state, action) => {

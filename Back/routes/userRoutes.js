@@ -4,18 +4,29 @@ const {
   createUser,
   loginUser,
   logoutUser,
+  getUserProfile,
+  updateUserProfile,
+  updateUserAddress,
+  updateProfilePic,
+  forgotPassword,
+  verifyResetCode,
+  resetPassword,
 } = require("../controllers/userController");
 
 const { auth } = require("../middleware/auth");
 
 const router = Router();
-//get all users
-router.get("/", auth, getUsers);
 
-//create user
+router.get("/", auth, getUsers);
 router.post("/", createUser);
-//login user
 router.post("/login", loginUser);
-//logout user
 router.get("/logout", logoutUser);
+router.get("/profile", auth, getUserProfile);
+router.put("/profile", auth, updateUserProfile);
+router.put("/address", auth, updateUserAddress);
+router.put("/profile-pic", auth, updateProfilePic);
+router.post("/forgot-password", forgotPassword);
+router.post("/verify-reset-code", verifyResetCode);
+router.post("/reset-password", resetPassword);
+
 module.exports = router;

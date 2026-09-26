@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
 const User = require("../models/userModel");
+
 const auth = async (req, res, next) => {
   try {
     const token = req.cookies.jwt;
@@ -8,7 +9,6 @@ const auth = async (req, res, next) => {
       return res.status(401).json({ message: "not authorized" });
     }
 
-    //  verify token
     const data = jwt.verify(token, process.env.JWT_SECRET);
     const user = await User.findById(data.id);
 
@@ -24,6 +24,12 @@ const auth = async (req, res, next) => {
   }
 };
 
-module.exports = {
-  auth,
+const admin = (req, res, next) => {
+  if (req.user && req.user.isAdmin) {
+    next();
+  } else {
+    res.status(403).json({ message: "Not authorized as an admin" });
+  }
 };
+
+module.exports = { auth, admin };
