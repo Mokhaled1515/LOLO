@@ -628,33 +628,6 @@ const Dashboard = () => {
                       className="hidden"
                       onChange={async (e) => {
                         const file = e.target.files[0];
-                        // if (file) {
-                        //   const previewUrl = URL.createObjectURL(file);
-                        //   const imageFormData = new FormData();
-                        //   imageFormData.append("image", file);
-
-                        //   try {
-                        //     const uploadRes = await fetch("/api/upload", {
-                        //       method: "POST",
-                        //       body: imageFormData,
-                        //     });
-                        //     const uploadData = await uploadRes.json();
-
-                        //     if (uploadRes.ok) {
-                        //       setOfferData({
-                        //         ...offerData,
-                        //         image: uploadData.url || uploadData.image,
-                        //         imagePreview: previewUrl,
-                        //       });
-                        //     } else {
-                        //       console.error(
-                        //         uploadData.message || "Failed to upload image",
-                        //       );
-                        //     }
-                        //   } catch (error) {
-                        //     console.error("Upload error:", error);
-                        //   }
-                        // }
                         if (file) {
                           const previewUrl = URL.createObjectURL(file);
                           // بنحفظ الملف الحقيقي والـ Preview في الـ state عشان نبعتهم مع الـ Form

@@ -96,8 +96,9 @@ const loginUser = async (req, res, next) => {
     res.cookie("jwt", token, {
       httpOnly: true,
       // secure: process.env.NODE_ENV === "production",
-      secure:true,
-      sameSite:"none"
+      secure: true,
+      sameSite: "none",
+      path: "/",
     });
 
     const { password: userPassword, ...rest } = user._doc;
@@ -113,7 +114,10 @@ const loginUser = async (req, res, next) => {
 const logoutUser = async (req, res) => {
   res.cookie("jwt", "", {
     httpOnly: true,
+    secure: true,
+    sameSite: "none",
     expires: new Date(0),
+    path: "/",
   });
 
   return res.json({

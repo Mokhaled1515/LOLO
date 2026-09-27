@@ -5,7 +5,7 @@ import { updateRoom, reset } from "../../features/room/roomSlice";
 
 import { MdAdd } from "react-icons/md";
 
-
+const API_URL = import.meta.env.VITE_API_URL;
 const EditRoom = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -33,7 +33,8 @@ const EditRoom = () => {
   useEffect(() => {
     const getRoom = async () => {
       try {
-        const res = await fetch(`/api/rooms/${id}`);
+        // const res = await fetch(`/api/rooms/${id}`);
+        const res = await fetch(`${API_URL}/api/rooms/${id}`);
         const data = await res.json();
 
         const { roomsNumbers, ...rest } = data;

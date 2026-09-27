@@ -1,11 +1,10 @@
-
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteRoom, reset } from "../../features/room/roomSlice";
 import Carousel from "../../components/Carousel/Carousel";
 import { toast } from "react-toastify";
-
+const API_URL = import.meta.env.VITE_API_URL;
 const Room = () => {
   const { user } = useSelector((state) => state.auth);
   const { isSuccess } = useSelector((state) => state.room);
@@ -44,7 +43,7 @@ const Room = () => {
     const getRoom = async () => {
       try {
         setFetching(true);
-        const res = await fetch(`/api/rooms/${id}`);
+        const res = await fetch(`${API_URL}/api/rooms/${id}`);
         if (res.ok) {
           const data = await res.json();
           setRoom(data);
@@ -93,7 +92,7 @@ const Room = () => {
     // }
     if (!bookingData.checkInDate || !bookingData.checkOutDate) {
       // alert("Please select check-in and check-out dates.");
-      toast.error("Please select check-in and check-out dates.")
+      toast.error("Please select check-in and check-out dates.");
       return;
     }
 
@@ -101,7 +100,7 @@ const Room = () => {
     const checkOut = new Date(`${bookingData.checkOutDate}T00:00:00`);
 
     if (checkOut <= checkIn) {
-      toast.error("Check-out date must be after the check-in date.")
+      toast.error("Check-out date must be after the check-in date.");
       return;
     }
 
@@ -123,19 +122,19 @@ const Room = () => {
         !bookingData.cardExpiry ||
         !bookingData.cardCvc
       ) {
-        toast.error("Please fill in all credit card details.")
+        toast.error("Please fill in all credit card details.");
         return;
       }
     } else if (bookingData.paymentMethod === "vodafone") {
       if (!bookingData.walletNumber) {
-        toast.error("Please enter your mobile wallet phone number.")
+        toast.error("Please enter your mobile wallet phone number.");
         return;
       }
     }
 
     try {
       setBookingLoading(true);
-      const res = await fetch("/api/bookings", {
+      const res = await fetch(`${API_URL}/api/bookings`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -166,8 +165,7 @@ const Room = () => {
       });
 
       if (res.ok) {
-          
-        toast.success("Payment successful & Room booked successfully!")
+        toast.success("Payment successful & Room booked successfully!");
         setIsBookingOpen(false);
         setPaymentStep(1);
         navigate("/rooms");
@@ -474,7 +472,9 @@ const Room = () => {
                       >
                         {bookingLoading
                           ? "Processing Payment..."
-                          : `Pay $${room.price ? room.price.toFixed(2) : "0.00"}`}
+                          : `Pay $${
+                              room.price ? room.price.toFixed(2) : "0.00"
+                            }`}
                       </button>
                     </div>
                   </div>

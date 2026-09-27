@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+const API_URL = import.meta.env.VITE_API_URL;
 
 
 const PhoneModal = () => {
@@ -18,11 +19,12 @@ const PhoneModal = () => {
 
     try {
       setLoading(true);
-      const res = await fetch(`/api/users/update-phone`, {
+      const res = await fetch(`${API_URL}/api/users/update-phone`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
+        credentials: "include",
         body: JSON.stringify({ userId: user._id, phone }),
       });
 

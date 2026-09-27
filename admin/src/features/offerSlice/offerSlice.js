@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-
+const API_URL = import.meta.env.VITE_API_URL;
 const initialState = {
   offerList: [],
   offer: null,
@@ -13,7 +13,7 @@ export const fetchOffer = createAsyncThunk(
   "offer/fetchAll",
   async (_, thunkApi) => {
     try {
-      const res = await fetch("/api/offers", {
+      const res = await fetch(`${API_URL}/api/offers`, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -33,7 +33,7 @@ export const fetchOfferById = createAsyncThunk(
   "offer/fetchById",
   async (id, thunkApi) => {
     try {
-      const res = await fetch(`/api/offers/${id}`, {
+      const res = await fetch(`${API_URL}/api/offers/${id}`, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -67,7 +67,7 @@ export const createOffer = createAsyncThunk(
         bodyData = JSON.stringify(offerData);
       }
 
-      const res = await fetch("/api/offers", {
+      const res = await fetch(`${API_URL}/api/offers`, {
         method: "POST",
         credentials: "include",
         headers: headers,
@@ -94,7 +94,7 @@ export const updateOffer = createAsyncThunk(
         headers["Content-Type"] = "application/json";
       }
 
-      const res = await fetch(`/api/offers/${id}`, {
+      const res = await fetch(`${API_URL}/api/offers/${id}`, {
         method: "PUT",
         credentials: "include",
         headers,
@@ -117,7 +117,7 @@ export const deleteOffer = createAsyncThunk(
   "offer/delete",
   async (id, thunkApi) => {
     try {
-      const res = await fetch(`/api/offers/${id}`, {
+      const res = await fetch(`${API_URL}/api/offers/${id}`, {
         headers: {
           "Content-Type": "application/json",
         },

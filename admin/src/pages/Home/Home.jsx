@@ -1,5 +1,3 @@
-
-
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import {
@@ -13,7 +11,7 @@ import {
   FaChevronRight,
   FaPercent,
 } from "react-icons/fa";
-
+const API_URL = import.meta.env.VITE_API_URL;
 const Home = () => {
   const navigate = useNavigate();
   const [rooms, setRooms] = useState([]);
@@ -76,8 +74,8 @@ const Home = () => {
     const fetchData = async () => {
       try {
         const [roomsRes, offersRes] = await Promise.all([
-          fetch("/api/rooms"),
-          fetch("/api/offers"),
+          fetch(`${API_URL}/api/rooms`),
+          fetch(`${API_URL}/api/offers`),
         ]);
 
         if (roomsRes.ok) {

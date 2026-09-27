@@ -3,6 +3,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 const user = JSON.parse(localStorage.getItem("user"));
+const API_URL = import.meta.env.VITE_API_URL;
 
 // ================= REGISTER =================
 
@@ -11,7 +12,7 @@ export const registerUser = createAsyncThunk(
 
   async (userData, thunkApi) => {
     try {
-      const res = await fetch(`/api/users`, {
+      const res = await fetch(`${API_URL}/api/users`, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -40,7 +41,7 @@ export const loginUser = createAsyncThunk(
 
   async (userData, thunkApi) => {
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/users/login`, {
+      const res = await fetch(`${API_URL}/api/users/login`, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -84,7 +85,7 @@ export const forgotPassword = createAsyncThunk(
 
   async (email, thunkApi) => {
     try {
-      const res = await fetch("/api/users/forgot-password", {
+      const res = await fetch(`${API_URL}/api/users/forgot-password`, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -116,7 +117,7 @@ export const verifyResetCode = createAsyncThunk(
 
   async ({ email, code }, thunkApi) => {
     try {
-      const res = await fetch("/api/users/verify-reset-code", {
+      const res = await fetch(`${API_URL}/api/users/verify-reset-code`, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -151,7 +152,7 @@ export const resetPassword = createAsyncThunk(
 
   async ({ email, code, newPassword }, thunkApi) => {
     try {
-      const res = await fetch("/api/users/reset-password", {
+      const res = await fetch(`${API_URL}/api/users/reset-password`, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -187,7 +188,7 @@ export const updateUserProfile = createAsyncThunk(
 
   async (userData, thunkApi) => {
     try {
-      const res = await fetch("/api/users/profile", {
+      const res = await fetch(`${API_URL}/api/users/profile`, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -228,7 +229,7 @@ export const updateUserAddress = createAsyncThunk(
 
   async (addressData, thunkApi) => {
     try {
-      const res = await fetch("/api/users/address", {
+      const res = await fetch(`${API_URL}/api/users/address`, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -269,7 +270,7 @@ export const logoutUser = createAsyncThunk(
 
   async (_, thunkApi) => {
     try {
-      const res = await fetch("/api/users/logout", {
+      const res = await fetch(`${API_URL}/api/users/logout`, {
         credentials: "include",
       });
 

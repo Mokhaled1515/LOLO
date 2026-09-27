@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-
+const API_URL = import.meta.env.VITE_API_URL;
 const initialState = {
   diningList: [],
   dining: null,
@@ -14,7 +14,7 @@ export const fetchDining = createAsyncThunk(
   "dining/fetchAll",
   async (_, thunkApi) => {
     try {
-      const res = await fetch("/api/dining", {
+      const res = await fetch(`${API_URL}/api/dining`, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -47,7 +47,7 @@ export const createDining = createAsyncThunk(
         formData.append("image", diningData.image);
       }
 
-      const res = await fetch("/api/dining", {
+      const res = await fetch(`${API_URL}/api/dining`, {
         method: "POST",
         credentials: "include", // عشان الكوكي والأدمن
         body: formData, // إرسال الـ FormData مباشرة بدون Content-Type
@@ -68,7 +68,7 @@ export const deleteDining = createAsyncThunk(
   "dining/delete",
   async (id, thunkApi) => {
     try {
-      const res = await fetch(`/api/dining/${id}`, {
+      const res = await fetch(`${API_URL}/api/dining/${id}`, {
         headers: {
           "Content-Type": "application/json",
         },

@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-
+const API_URL = import.meta.env.VITE_API_URL;
 const initialState = {
   amenityList: [],
   amenity: null,
@@ -14,7 +14,7 @@ export const fetchAmenity = createAsyncThunk(
   "amenity/fetchAll",
   async (_, thunkApi) => {
     try {
-      const res = await fetch("/api/amenities", {
+      const res = await fetch(`${API_URL}/api/amenities`, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -35,7 +35,7 @@ export const createAmenity = createAsyncThunk(
   "amenity/create",
   async (amenityData, thunkApi) => {
     try {
-      const res = await fetch("/api/amenities", {
+      const res = await fetch(`${API_URL}/api/amenities`, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -59,7 +59,7 @@ export const deleteAmenity = createAsyncThunk(
   "amenity/delete",
   async (id, thunkApi) => {
     try {
-      const res = await fetch(`/api/amenities/${id}`, {
+      const res = await fetch(`${API_URL}/api/amenities/${id}`, {
         headers: {
           "Content-Type": "application/json",
         },

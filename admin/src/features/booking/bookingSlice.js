@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-
+const API_URL = import.meta.env.VITE_API_URL;
 const initialState = {
   bookings: [],
   booking: null,
@@ -13,7 +13,7 @@ export const createBooking = createAsyncThunk(
   "booking/create",
   async (bookingData, thunkApi) => {
     try {
-      const res = await fetch(`/api/bookings`, {
+      const res = await fetch(`${API_URL}/api/bookings`, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -36,7 +36,7 @@ export const getBookings = createAsyncThunk(
   "booking/getbookings",
   async (_, thunkApi) => {
     try {
-      const res = await fetch("/api/bookings", {
+      const res = await fetch(`${API_URL}/api/bookings`, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -58,7 +58,7 @@ export const deleteBooking = createAsyncThunk(
   "booking/delete",
   async (id, thunkApi) => {
     try {
-      const res = await fetch(`/api/bookings/${id}`, {
+      const res = await fetch(`${API_URL}/api/bookings/${id}`, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -84,7 +84,7 @@ export const confirmBooking = createAsyncThunk(
   "booking/confirm",
   async (bookingId, thunkApi) => {
     try {
-      const res = await fetch(`/api/bookings/${bookingId}`, {
+      const res = await fetch(`${API_URL}/api/bookings/${bookingId}`, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -106,7 +106,7 @@ export const getUserBookings = createAsyncThunk(
   "booking/getuserbookings",
   async (_, thunkApi) => {
     try {
-      const res = await fetch("/api/bookings/my-bookings", {
+      const res = await fetch(`${API_URL}/api/bookings/my-bookings`, {
         headers: {
           "Content-Type": "application/json",
         },

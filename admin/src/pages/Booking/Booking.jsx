@@ -7,13 +7,12 @@ import {
 } from "../../features/booking/bookingSlice";
 import { useDispatch, useSelector } from "react-redux";
 
+const API_URL = import.meta.env.VITE_API_URL;
 const Booking = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { isSuccess, isLoading } = useSelector(
-    (state) => state.booking
-  );
+  const { isSuccess, isLoading } = useSelector((state) => state.booking);
   const [booking, setBooking] = useState(null);
 
   useEffect(() => {
@@ -25,10 +24,13 @@ const Booking = () => {
 
   useEffect(() => {
     dispatch(reset());
-    
+
     const getBooking = async () => {
       try {
-        const res = await fetch(`/api/bookings/${id}`);
+        // const res = await fetch(`/api/bookings/${id}`);
+        const res = await fetch(`${API_URL}/api/bookings/${id}`, {
+          credentials: "include",
+        });
         const data = await res.json();
         setBooking(data);
       } catch (error) {
@@ -41,7 +43,7 @@ const Booking = () => {
   const handleDelete = () => {
     dispatch(deleteBooking(id));
   };
-  
+
   const handleConfirm = () => {
     dispatch(confirmBooking(id));
   };
@@ -66,41 +68,57 @@ const Booking = () => {
                   {booking.userId?.name || booking.name || "Guest"}
                 </h2>
                 <p className="text-sm text-gray-500 mt-0.5">
-                  {booking.userId?.email || booking.email || "No Email Provided"}
+                  {booking.userId?.email ||
+                    booking.email ||
+                    "No Email Provided"}
                 </p>
               </div>
-              <span className={`px-4 py-1.5 rounded-full text-xs font-bold ${
-                booking.confirmed
-                  ? "bg-emerald-50 text-emerald-700 border border-emerald-200"
-                  : "bg-rose-50 text-rose-700 border border-rose-200"
-              }`}>
+              <span
+                className={`px-4 py-1.5 rounded-full text-xs font-bold ${
+                  booking.confirmed
+                    ? "bg-emerald-50 text-emerald-700 border border-emerald-200"
+                    : "bg-rose-50 text-rose-700 border border-rose-200"
+                }`}
+              >
                 {booking.confirmed ? "Confirmed" : "Not Confirmed"}
               </span>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-[#fdfbf7] p-6 rounded-2xl border border-[#e6dfd5]/60">
               <div>
-                <p className="text-xs font-bold text-gray-400 uppercase">Reserved Room</p>
+                <p className="text-xs font-bold text-gray-400 uppercase">
+                  Reserved Room
+                </p>
                 <p className="text-base font-bold text-[#64031b] mt-1">
                   {booking.roomId?.name || "Standard Room"}
                 </p>
               </div>
               <div>
-                <p className="text-xs font-bold text-gray-400 uppercase">Total Price</p>
+                <p className="text-xs font-bold text-gray-400 uppercase">
+                  Total Price
+                </p>
                 <p className="text-base font-bold text-gray-800 mt-1">
                   ${booking.roomId?.price || booking.price || "0"}
                 </p>
               </div>
               <div>
-                <p className="text-xs font-bold text-gray-400 uppercase">Check-in Date</p>
+                <p className="text-xs font-bold text-gray-400 uppercase">
+                  Check-in Date
+                </p>
                 <p className="text-sm font-semibold text-gray-700 mt-1">
-                  {booking.checkIn ? new Date(booking.checkIn).toLocaleDateString() : booking.checkInDate || "N/A"}
+                  {booking.checkIn
+                    ? new Date(booking.checkIn).toLocaleDateString()
+                    : booking.checkInDate || "N/A"}
                 </p>
               </div>
               <div>
-                <p className="text-xs font-bold text-gray-400 uppercase">Check-out Date</p>
+                <p className="text-xs font-bold text-gray-400 uppercase">
+                  Check-out Date
+                </p>
                 <p className="text-sm font-semibold text-gray-700 mt-1">
-                  {booking.checkOut ? new Date(booking.checkOut).toLocaleDateString() : booking.checkOutDate || "N/A"}
+                  {booking.checkOut
+                    ? new Date(booking.checkOut).toLocaleDateString()
+                    : booking.checkOutDate || "N/A"}
                 </p>
               </div>
             </div>

@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-
+const API_URL = import.meta.env.VITE_API_URL;
 const initialState = {
   rooms: [],
   isLoading: false,
@@ -15,7 +15,7 @@ export const createRoom = createAsyncThunk(
   "room/create",
   async (roomData, thunkApi) => {
     try {
-      const res = await fetch("/api/rooms", {
+      const res = await fetch(`${API_URL}/api/rooms`, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -40,7 +40,7 @@ export const createRoom = createAsyncThunk(
 //get all rooms
 export const getRooms = createAsyncThunk("room/getall", async (_, thunkApi) => {
   try {
-    const res = await fetch("/api/rooms");
+    const res = await fetch(`${API_URL}/api/rooms`);
     if (!res.ok) {
       const error = await res.json();
       return thunkApi.rejectWithValue(error);
@@ -61,7 +61,7 @@ export const updateRoom = createAsyncThunk(
     try {
       // const { roomId, ...reset } = roomData;
       const { roomId, ...roomRest } = roomData;
-      const res = await fetch(`/api/rooms/${roomId}`, {
+      const res = await fetch(`${API_URL}/api/rooms/${roomId}`,{
         headers: {
           "Content-Type": "application/json",
         },
@@ -86,7 +86,7 @@ export const deleteRoom = createAsyncThunk(
   "room/delete",
   async (roomId, thunkApi) => {
     try {
-      const res = await fetch(`/api/rooms/${roomId}`, {
+      const res = await fetch(`${API_URL}/api/rooms/${roomId}`, {
         method: "DELETE",
         credentials: "include",
       });
