@@ -99,7 +99,14 @@ const App = () => {
           {/* /admin/offers */}
         </Routes>
       </Router>
-      <ToastContainer position="top-center" />
+      {/* <ToastContainer position="top-center" /> */}
+      <ToastContainer
+        position="top-center"
+        toastStyle={{
+          maxWidth: "calc(100vw - 20px)",
+          width: "auto",
+        }}
+      />
     </div>
   );
 };
