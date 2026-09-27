@@ -21,6 +21,7 @@ import OfferDetails from "./pages/OfferDetails/OfferDetails";
 import Booking from "./pages/Booking/Booking";
 import EditProfile from "./pages/EditProfile/EditProfile";
 import SavedAddress from "./pages/SavedAddress/SavedAddress";
+import Contact from "./pages/Contact/Contact";
 // import Dining from "./pages/dining/Dining";
 import Offers from "./pages/offers/Offers";
 import ForgotPassword from "./pages/ForgotPassword/ForgotPassword";
@@ -53,6 +54,7 @@ const App = () => {
           <Route path="/profile/address" element={<SavedAddress />} />
           <Route path="/offers" element={<Offers />} />
           <Route path="/offer/:id" element={<OfferDetails />} />
+          <Route path="/contact" element={<Contact />} />
           {/* المسارات المحمية للأدمن فقط */}
           <Route
             path="/dashboard"
