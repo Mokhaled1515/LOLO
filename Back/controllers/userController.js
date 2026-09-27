@@ -95,7 +95,9 @@ const loginUser = async (req, res, next) => {
 
     res.cookie("jwt", token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
+      // secure: process.env.NODE_ENV === "production",
+      secure:true,
+      sameSite:"none"
     });
 
     const { password: userPassword, ...rest } = user._doc;
