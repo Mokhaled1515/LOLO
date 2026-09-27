@@ -31,7 +31,7 @@
 // //     try {
 // //       const mailOptions = {
 // //         from: email,
-// //         to: process.env.OWNER_EMAIL,
+// //         to: process.env.EMAIL_USER,
 // //         subject: `Website Contact: ${subject}`,
 // //         html: `
 // //           <h3>New Message from ${name}</h3>
@@ -90,8 +90,8 @@ const nodemailer = require('nodemailer');
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: process.env.OWNER_EMAIL,
-    pass: process.env.OWNER_EMAIL_PASS
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_USER_PASS
   }
 });
 
@@ -122,9 +122,9 @@ const submitContactForm = async (req, res) => {
     setImmediate(async () => {
       try {
         const mailOptions = {
-          from: process.env.OWNER_EMAIL, // يفضل يكون إيميلك الشخصي عشان جوجل ما يعملش بلوك
+          from: process.env.EMAIL_USER, // يفضل يكون إيميلك الشخصي عشان جوجل ما يعملش بلوك
           replyTo: email, // عشان لما تعمل Reply يرجع للشخص اللي بعت الرسالة
-          to: process.env.OWNER_EMAIL,
+          to: process.env.EMAIL_USER,
           subject: `Website Contact: ${subject}`,
           html: `
             <div style="font-family: Arial, sans-serif; padding: 20px; border: 1px solid #eee; border-radius: 10px;">
