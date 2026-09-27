@@ -25,6 +25,7 @@ app.use(
       "http://localhost:5173",
       "https://lavilla-admin.vercel.app",
       "https://admin-mo-o1.vercel.app",
+      "https://lolo-mo-o1.vercel.app",
     ],
     credentials: true,
   }),
