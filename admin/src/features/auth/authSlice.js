@@ -40,7 +40,7 @@ export const loginUser = createAsyncThunk(
 
   async (userData, thunkApi) => {
     try {
-      const res = await fetch("/api/users/login", {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/users/login`, {
         headers: {
           "Content-Type": "application/json",
         },
