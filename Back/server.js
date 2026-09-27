@@ -11,7 +11,7 @@ const userRoutes = require("./routes/userRoutes");
 const diningRoutes = require("./routes/diningRoutes");
 const offerRoutes = require("./routes/offerRoutes");
 const amenityRoutes = require("./routes/amenityRoutes");
-
+const contactRoutes = require("./routes/contactRoute");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const port = process.env.PORT || 5000;
@@ -44,6 +44,7 @@ app.use("/api/users", userRoutes);
 app.use("/api/dining", diningRoutes);
 app.use("/api/offers", offerRoutes);
 app.use("/api/amenities", amenityRoutes);
+app.use("/api/contact", contactRoutes);
 
 app.use(errorHandler);
 
