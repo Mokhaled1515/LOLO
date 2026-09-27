@@ -117,10 +117,10 @@ const Contact = () => {
 
                 <div className="min-w-0">
                   <h3 className="text-sm font-bold text-gray-800">
-                    {RESORT_LOCATION}
+                    Location
                   </h3>
                   <p className="text-sm text-gray-500 mt-1 leading-relaxed break-words">
-                    -
+                    {RESORT_LOCATION}
                   </p>
                 </div>
               </div>
@@ -133,10 +133,10 @@ const Contact = () => {
 
                 <div className="min-w-0">
                   <h3 className="text-sm font-bold text-gray-800">
-                    {RESORT_PHONE}
+                    Phone
                   </h3>
                   <p className="text-sm text-gray-500 mt-1 break-all">
-                    +20 100 000 0000
+                    {RESORT_PHONE}
                   </p>
                 </div>
               </div>
@@ -149,10 +149,10 @@ const Contact = () => {
 
                 <div className="min-w-0">
                   <h3 className="text-sm font-bold text-gray-800">
-                    {RESORT_EMAIL}
+                    E-mail
                   </h3>
                   <p className="text-sm text-gray-500 mt-1 break-all">
-                    info@lavilla.com
+                    {RESORT_EMAIL}
                   </p>
                 </div>
               </div>
