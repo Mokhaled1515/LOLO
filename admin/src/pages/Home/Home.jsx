@@ -474,11 +474,11 @@ const Home = () => {
         <div className="flex justify-center gap-4">
           <Link
             to="/register"
-            className="px-6 py-3 bg-amber-400 text-[#64031b] font-bold rounded-xl hover:bg-amber-500 transition shadow"
+            className="px-6 py-3 bg-amber-400 text-[#64031b] font-bold rounded-xl hover:bg-amber-600 transition shadow"
           >
             Get Started
           </Link>
-          5{" "}
+         
           <Link
             to="/login"
             className="px-6 py-3 bg-transparent border-2 border-white text-white font-bold rounded-xl hover:bg-white hover:text-[#64031b] transition"
