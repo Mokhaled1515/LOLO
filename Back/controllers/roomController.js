@@ -13,10 +13,8 @@ const getRomms = async (req, res,next) => {
   }
 };
 
-//create room
 const createRoom = async (req, res, next) => {
   try {
-    //todo validation data from user with joi
     const room = await Room.create(req.body);
 
     if (!room) {
@@ -32,7 +30,6 @@ const createRoom = async (req, res, next) => {
   }
 };
 
-//get single room
 const getRoom = async (req, res, next) => {
   try {
     const room = await Room.findById(req.params.id);
@@ -46,7 +43,6 @@ const getRoom = async (req, res, next) => {
   }
 };
 
-//update rooms
 const updateRoom = async (req, res, next) => {
   try {
     const updatedRoom = await Room.findByIdAndUpdate(

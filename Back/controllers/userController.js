@@ -95,7 +95,6 @@ const loginUser = async (req, res, next) => {
 
     res.cookie("jwt", token, {
       httpOnly: true,
-      // secure: process.env.NODE_ENV === "production",
       secure: true,
       sameSite: "none",
       path: "/",
@@ -236,7 +235,6 @@ const forgotPassword = async (req, res, next) => {
       throw new Error("User with this email does not exist");
     }
 
-    // Generate a secure 6-digit verification code
     const resetCode = crypto.randomInt(100000, 1000000).toString();
 
     const resetExpire = new Date(Date.now() + 15 * 60 * 1000);
@@ -260,7 +258,6 @@ const forgotPassword = async (req, res, next) => {
     });
 
     const mailOptions = {
-      // from: process.env.EMAIL_USER,
       from: {
         name: "mookhaleddd",
         address: process.env.EMAIL_USER,
@@ -358,7 +355,6 @@ const forgotPassword = async (req, res, next) => {
     try {
       await transporter.sendMail(mailOptions);
     } catch (emailError) {
-      // If sending fails, invalidate the code
       user.resetPasswordToken = "";
       user.resetPasswordExpire = null;
       await user.save();
@@ -433,7 +429,6 @@ const resetPassword = async (req, res, next) => {
 
     user.password = await bcrypt.hash(newPassword, salt);
 
-    // Invalidate the verification code after successful reset
     user.resetPasswordToken = "";
     user.resetPasswordExpire = null;
 

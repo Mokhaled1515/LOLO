@@ -23,7 +23,6 @@ const ForgotPassword = () => {
     try {
       await dispatch(forgotPassword(email.trim())).unwrap();
 
-      // نخزن بيانات عملية استرجاع الباسورد
       dispatch(clearResetData());
 
       toast.success("Verification code sent to your email 📩");
@@ -35,7 +34,7 @@ const ForgotPassword = () => {
       toast.error(
         typeof error === "string"
           ? error
-          : error?.message || "Failed to send verification code"
+          : error?.message || "Failed to send verification code",
       );
     }
   };

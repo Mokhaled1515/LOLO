@@ -16,7 +16,7 @@ const offerSchema = new mongoose.Schema(
       required: [true, "Please specify the discount percentage."],
     },
     image: {
-      type: String, // رابط الصورة المحفوظة على Cloudinary
+      type: String, 
       required: [true, "Please attach a photo of the display."],
     },
     validUntil: {
@@ -25,11 +25,11 @@ const offerSchema = new mongoose.Schema(
     },
     isActive: {
       type: Boolean,
-      default: true, // عشان لو الأدمن حابب يخفي العرض مؤقتًا من غير ما يحذفه
+      default: true, 
     },
   },
   {
-    timestamps: true, // لتسجيل تاريخ إنشاء العرض وتحديثه تلقائياً
+    timestamps: true, 
   }
 );
 

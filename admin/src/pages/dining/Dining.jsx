@@ -33,7 +33,6 @@ const Dining = () => {
     <div className="min-h-screen bg-[#fdfbf7] py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto space-y-8">
         
-        {/* ترويسة القسم */}
         <div className="text-center max-w-2xl mx-auto space-y-3">
           <span className="text-xs font-bold uppercase tracking-widest text-[#64031b] bg-[#64031b]/10 px-3 py-1 rounded-full">
             Culinary Excellence
@@ -46,7 +45,6 @@ const Dining = () => {
           </p>
         </div>
 
-        {/* حالة التحميل */}
         {isLoading ? (
           <div className="flex flex-col items-center justify-center py-24 space-y-4">
             <div className="w-12 h-12 border-4 border-[#e6dfd5] border-t-[#64031b] rounded-full animate-spin"></div>
@@ -55,7 +53,6 @@ const Dining = () => {
             </p>
           </div>
         ) : diningList && diningList.length > 0 ? (
-          /* شبكة عرض المطاعم */
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {diningList.map((item) => (
               <div
@@ -63,7 +60,6 @@ const Dining = () => {
                 className="bg-white rounded-3xl border border-[#e6dfd5] shadow-sm overflow-hidden flex flex-col justify-between transition hover:shadow-md"
               >
                 <div>
-                  {/* صورة المطعم */}
                   {item.image && (
                     <div className="h-56 w-full overflow-hidden relative">
                       <img
@@ -89,7 +85,6 @@ const Dining = () => {
                   </div>
                 </div>
 
-                {/* تفاصيل إضافية وأزرار التحكم للأدمن */}
                 <div className="px-6 pb-6 pt-2 border-t border-[#e6dfd5]/60 flex items-center justify-between mt-4">
                   <span className="text-xs font-bold text-gray-400">
                     {item.openingHours || "Open Daily"}
@@ -108,7 +103,6 @@ const Dining = () => {
             ))}
           </div>
         ) : (
-          /* في حالة عدم وجود بيانات */
           <div className="text-center py-20 px-6 bg-white rounded-3xl border border-[#e6dfd5]">
             <h3 className="text-lg font-bold text-[#64031b]">No Dining Options Available</h3>
             <p className="text-xs text-gray-400 mt-1">

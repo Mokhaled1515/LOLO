@@ -14,7 +14,6 @@ router
   .route("/")
   .get(getAllOffers)
   .post(auth, admin, upload.single("image"), createOffer);
-// router.route("/:id").delete(auth,admin, deleteOffer);
 router
   .route("/:id")
   .get(getOfferById)

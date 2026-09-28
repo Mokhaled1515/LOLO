@@ -1,16 +1,17 @@
-
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
-import { fetchOfferById, updateOffer } from "../../features/offerSlice/offerSlice"; // تأكد من استيراد دالة التحديث المناسبة عندك
-
+import {
+  fetchOfferById,
+  updateOffer,
+} from "../../features/offerSlice/offerSlice";
 const EditOffer = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const { offer, isLoading, isError, message } = useSelector(
-    (state) => state.offer
+    (state) => state.offer,
   );
 
   const [offerData, setOfferData] = useState({
@@ -26,7 +27,6 @@ const EditOffer = () => {
     dispatch(fetchOfferById(id));
   }, [dispatch, id]);
 
-  // تحديث الـ local state أول ما بيانات العرض تتحمل من الـ Redux
   useEffect(() => {
     if (offer) {
       setOfferData({
@@ -68,12 +68,10 @@ const EditOffer = () => {
     }
     dispatch(updateOffer({ id, formData })).then((result) => {
       if (!result.error) {
-        navigate("/dashboard"); // رجعه للداشبورد بعد التعديل الناجح
+        navigate("/dashboard"); 
       }
     });
 
-    // هنا بتنادي دالة التحديث (Update Thunk) وتبعت الـ id والـ formData
-    // dispatch(updateOffer({ id, formData })).then(() => navigate('/dashboard'));
   };
 
   if (isLoading) {
@@ -95,8 +93,6 @@ const EditOffer = () => {
   return (
     <div className="min-h-screen bg-[#fdfbf7] py-10 px-4 sm:px-6 lg:px-8">
       <div className="max-w-2xl mx-auto bg-white rounded-3xl shadow-xl border border-[#e6dfd5] p-6 sm:p-10">
-        
-        {/* Header */}
         <div className="mb-8 border-b border-gray-100 pb-4">
           <span className="text-xs font-bold uppercase tracking-wider text-[#64031b] bg-[#f5efe6] px-3 py-1 rounded-full">
             Admin Management
@@ -109,10 +105,7 @@ const EditOffer = () => {
           </p>
         </div>
 
-        {/* Form */}
         <form onSubmit={handleSubmit} className="space-y-6">
-          
-          {/* Offer Title */}
           <div>
             <label className="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">
               Offer Title
@@ -128,7 +121,6 @@ const EditOffer = () => {
             />
           </div>
 
-          {/* Discount & Valid Until Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">
@@ -162,7 +154,6 @@ const EditOffer = () => {
             </div>
           </div>
 
-          {/* Description */}
           <div>
             <label className="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">
               Description
@@ -178,14 +169,12 @@ const EditOffer = () => {
             />
           </div>
 
-          {/* Banner Image Upload & Preview */}
           <div>
             <label className="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">
               Offer Banner Image
             </label>
             <div className="flex items-center justify-center w-full">
               <label className="flex flex-col items-center justify-center w-full h-44 border-2 border-[#e6dfd5] border-dashed rounded-2xl cursor-pointer bg-[#fdfbf7] hover:bg-[#f5efe6] transition relative overflow-hidden group">
-                
                 {offerData.imagePreview ? (
                   <>
                     <img
@@ -234,7 +223,6 @@ const EditOffer = () => {
             </div>
           </div>
 
-          {/* Action Buttons */}
           <div className="flex items-center justify-end gap-4 pt-4">
             <button
               type="button"
@@ -250,7 +238,6 @@ const EditOffer = () => {
               Update Offer
             </button>
           </div>
-
         </form>
       </div>
     </div>

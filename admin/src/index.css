@@ -3,7 +3,7 @@
 @keyframes fadeInZoom {
   0% {
     opacity: 0;
-    transform: scale(1.1); /* تبدأ تكبر شوية وتنكمش للحجم الطبيعي */
+    transform: scale(1.1); 
   }
   100% {
     opacity: 1;

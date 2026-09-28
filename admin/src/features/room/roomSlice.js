@@ -10,7 +10,6 @@ const initialState = {
 
 //
 
-//create room
 export const createRoom = createAsyncThunk(
   "room/create",
   async (roomData, thunkApi) => {
@@ -37,7 +36,6 @@ export const createRoom = createAsyncThunk(
   }
 );
 
-//get all rooms
 export const getRooms = createAsyncThunk("room/getall", async (_, thunkApi) => {
   try {
     const res = await fetch(`${API_URL}/api/rooms`);
@@ -53,13 +51,11 @@ export const getRooms = createAsyncThunk("room/getall", async (_, thunkApi) => {
   }
 });
 
-//update room
 
 export const updateRoom = createAsyncThunk(
   "/room/update",
   async (roomData, thunkApi) => {
     try {
-      // const { roomId, ...reset } = roomData;
       const { roomId, ...roomRest } = roomData;
       const res = await fetch(`${API_URL}/api/rooms/${roomId}`,{
         headers: {
@@ -112,7 +108,7 @@ export const roomSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    //add casess
+    
     builder
       .addCase(createRoom.pending, (state) => {
         state.isLoading = true;

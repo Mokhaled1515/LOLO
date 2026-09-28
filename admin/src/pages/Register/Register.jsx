@@ -101,7 +101,6 @@ const Register = () => {
               />
             </div>
 
-            {/* Email */}
             <div>
               <label
                 htmlFor="email"
@@ -121,7 +120,6 @@ const Register = () => {
               />
             </div>
 
-            {/* Phone */}
             <div>
               <label
                 htmlFor="phone"
@@ -141,7 +139,6 @@ const Register = () => {
               />
             </div>
 
-            {/* Password */}
             <div>
               <label
                 htmlFor="password"
@@ -160,7 +157,6 @@ const Register = () => {
                 required
               />
 
-              {/* Password Status */}
               {password && (
                 <div className="mt-3">
                   {!isPasswordStrong ? (
@@ -173,7 +169,6 @@ const Register = () => {
                     </div>
                   )}
 
-                  {/* Password Requirements */}
                   <div className="mt-2 space-y-1 text-xs">
                     <p
                       className={
@@ -233,7 +228,6 @@ const Register = () => {
               )}
             </div>
 
-            {/* Confirm Password */}
             <div>
               <label
                 htmlFor="confirmPassword"
@@ -267,7 +261,6 @@ const Register = () => {
               )}
             </div>
 
-            {/* Submit Button */}
             <button
               type="submit"
               disabled={isLoading || !isPasswordStrong}
@@ -277,7 +270,6 @@ const Register = () => {
             </button>
           </form>
 
-          {/* Footer Link */}
           <div className="text-center mt-6">
             <p className="text-sm text-gray-600">
               Already have an account?{" "}

@@ -10,13 +10,11 @@ const OfferDetails = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  // جلب العروض وبيانات الحالة من الـ Redux
   const { offerList, isLoading, isError, message } = useSelector(
     (state) => state.offer
   );
 
   useEffect(() => {
-    // إذا لم تكن القائمة موجودة مسبقاً، نقوم بجلبها
     if (!offerList || offerList.length === 0) {
       dispatch(fetchOffer());
     }
@@ -29,7 +27,6 @@ const OfferDetails = () => {
     }
   }, [isError, message, dispatch]);
 
-  // البحث عن العرض المطابق للـ id القادم من الرابط
   const offer = offerList?.find((item) => item._id === id);
 
   if (isLoading) {
@@ -43,7 +40,6 @@ const OfferDetails = () => {
     );
   }
 
-  // لو العرض مش موجود بعد التحميل أو الرابط غلط
   if (!offer) {
     return (
       <div className="min-h-screen bg-[#fdfbf7] flex items-center justify-center px-4">
@@ -65,12 +61,10 @@ const OfferDetails = () => {
 
   return (
     <div className="min-h-screen bg-[#fdfbf7] py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-      {/* Background Decor */}
       <div className="absolute top-0 left-0 w-72 h-72 bg-[#64031b]/5 rounded-full blur-3xl pointer-events-none -ml-12 -mt-12"></div>
       <div className="absolute bottom-0 right-0 w-80 h-80 bg-[#e6dfd5]/40 rounded-full blur-3xl pointer-events-none -mr-12 -mb-12"></div>
 
       <div className="max-w-5xl mx-auto relative z-10 space-y-8">
-        {/* زر العودة */}
         <button
           onClick={() => navigate(-1)}
           className="flex items-center gap-2 text-xs font-bold text-[#64031b] bg-white border border-[#e6dfd5] px-4 py-2.5 rounded-xl hover:bg-[#64031b] hover:text-white transition shadow-sm cursor-pointer group"
@@ -79,10 +73,8 @@ const OfferDetails = () => {
           <span>Back to Offers</span>
         </button>
 
-        {/* كارت تفاصيل العرض الرئيسي */}
         <div className="bg-white border border-[#e6dfd5] rounded-3xl shadow-sm overflow-hidden grid grid-cols-1 lg:grid-cols-12 gap-0">
           
-          {/* قسم الصورة */}
           {offer.image && (
             <div className="lg:col-span-6 relative h-72 sm:h-96 lg:h-full min-h-[300px] bg-gray-100 overflow-hidden">
               <img
@@ -99,7 +91,6 @@ const OfferDetails = () => {
             </div>
           )}
 
-          {/* قسم المعلومات والتفاصيل */}
           <div className={`p-6 sm:p-10 flex flex-col justify-between space-y-6 ${offer.image ? 'lg:col-span-6' : 'lg:col-span-12'}`}>
             <div className="space-y-4">
               <span className="text-xs font-bold uppercase tracking-widest text-[#64031b] bg-[#64031b]/10 px-3.5 py-1 rounded-full inline-block">
@@ -114,7 +105,6 @@ const OfferDetails = () => {
                 {offer.description}
               </p>
 
-              {/* تاريخ الصلاحية */}
               <div className="flex items-center gap-2 text-xs font-bold text-gray-500 bg-[#fdfbf7] border border-[#e6dfd5] p-3 rounded-2xl w-fit">
                 <FaCalendarAlt className="text-[#64031b]" />
                 <span>
@@ -124,7 +114,6 @@ const OfferDetails = () => {
                 </span>
               </div>
 
-              {/* مميزات إضافية شكلية تتناسب مع الستايلم */}
               <div className="space-y-2 pt-2 border-t border-gray-100">
                 <div className="flex items-center gap-2 text-xs font-semibold text-gray-700">
                   <FaCheckCircle className="text-[#64031b]" />
@@ -137,7 +126,6 @@ const OfferDetails = () => {
               </div>
             </div>
 
-            {/* أزرار الإجراءات */}
             <div className="pt-6 border-t border-[#e6dfd5]/60 flex flex-col sm:flex-row items-center gap-4">
               <button
                 onClick={() => navigate("/rooms")} // أو توجيهه لصفحة الحجز أو الغرف

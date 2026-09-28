@@ -22,13 +22,11 @@ import Booking from "./pages/Booking/Booking";
 import EditProfile from "./pages/EditProfile/EditProfile";
 import SavedAddress from "./pages/SavedAddress/SavedAddress";
 import Contact from "./pages/Contact/Contact";
-// import Dining from "./pages/dining/Dining";
 import Offers from "./pages/offers/Offers";
 import ForgotPassword from "./pages/ForgotPassword/ForgotPassword";
 import VerifyResetCode from "./pages/VerifyResetCode/VerifyResetCode";
 import ResetPassword from "./pages/ResetPassword/ResetPassword";
-// import Amenities from "./pages/Amenities/Amenities";
-// مكون حماية مسارات الأدمن
+
 const AdminRoute = ({ children }) => {
   const { user } = useSelector((state) => state.auth);
   return user && user.isAdmin ? children : <Navigate to="/rooms" replace />;
@@ -55,7 +53,6 @@ const App = () => {
           <Route path="/offers" element={<Offers />} />
           <Route path="/offer/:id" element={<OfferDetails />} />
           <Route path="/contact" element={<Contact />} />
-          {/* المسارات المحمية للأدمن فقط */}
           <Route
             path="/dashboard"
             element={
@@ -98,10 +95,8 @@ const App = () => {
             }
           />
 
-          {/* /admin/offers */}
         </Routes>
       </Router>
-      {/* <ToastContainer position="top-center" /> */}
       <ToastContainer
         position="top-center"
         toastStyle={{

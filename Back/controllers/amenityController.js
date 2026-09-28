@@ -1,8 +1,6 @@
 const Amenity = require("../models/amenityModel");
 
-// @desc    جلب جميع خدمات ورفاهية الفندق
-// @route   GET /api/amenities
-// @access  Public
+
 const getAllAmenities = async (req, res) => {
   try {
     const amenities = await Amenity.find({ isActive: true });
@@ -13,10 +11,6 @@ const getAllAmenities = async (req, res) => {
     res.status(500).json({ success: false, message: error.message });
   }
 };
-
-// @desc    إضافة مرفق أو خدمة جديدة (أدمن فقط)
-// @route   POST /api/amenities
-// @access  Private/Admin
 const createAmenity = async (req, res) => {
   try {
     const { name, description, icon, image, availability, isFree } = req.body;
@@ -51,9 +45,6 @@ const createAmenity = async (req, res) => {
   }
 };
 
-// @desc    حذف خدمة (أدمن فقط)
-// @route   DELETE /api/amenities/:id
-// @access  Private/Admin
 const deleteAmenity = async (req, res) => {
   try {
     const amenity = await Amenity.findById(req.params.id);

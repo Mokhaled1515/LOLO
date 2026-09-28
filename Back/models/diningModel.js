@@ -20,16 +20,16 @@ const diningSchema = new mongoose.Schema(
       required: [true, "Please specify your working hours (e.g., from 7 am to 11 pm)"],
     },
     image: {
-      type: String, // رابط الصورة المحفوظة على Cloudinary
+      type: String, 
       required: [true, "Please attach a photo of the restaurant."],
     },
     location: {
-      type: String, // مكان المطعم جوه الفندق (مثال: بجوار حمام السباحة، الدور الأرضي)
+      type: String, 
       default: "Inside the hotel",
     },
     isActive: {
       type: Boolean,
-      default: true, // للتحكم في ظهور المطعم للعملاء
+      default: true, 
     },
   },
   {

@@ -49,7 +49,6 @@ const EditProfile = ({ onClose }) => {
 
   return (
     <div className="w-full flex flex-col h-full max-h-[85vh] overflow-y-auto px-2 sm:px-4 py-2 relative">
-      {/* الهيدر: العنوان على الشمال وعلامة الـ X في أقصى اليمين */}
       <div className="w-full flex items-center justify-between border-b border-gray-200 pb-3 mb-4">
         <h2 className="text-xl sm:text-2xl font-bold text-[#64031b]">
           Edit Profile
@@ -66,9 +65,7 @@ const EditProfile = ({ onClose }) => {
         )}
       </div>
 
-      {/* الفورم */}
       <form onSubmit={handleSubmit} className="flex flex-col gap-3.5 w-full">
-        {/* رفع الصورة الشخصية */}
         <div className="flex flex-col items-center justify-center my-1">
           <label
             htmlFor="profileImageInput"
@@ -101,7 +98,6 @@ const EditProfile = ({ onClose }) => {
           </span>
         </div>
 
-        {/* الاسم */}
         <div className="w-full">
           <label className="block text-xs font-semibold text-gray-700 mb-1">
             Name
@@ -115,7 +111,6 @@ const EditProfile = ({ onClose }) => {
           />
         </div>
 
-        {/* الجنسية */}
         <div className="w-full">
           <label className="block text-xs font-semibold text-gray-700 mb-1">
             Nationality
@@ -129,7 +124,6 @@ const EditProfile = ({ onClose }) => {
           />
         </div>
 
-        {/* رقم الهاتف */}
         <div className="w-full">
           <label className="block text-xs font-semibold text-gray-700 mb-1">
             Phone Number
@@ -143,7 +137,6 @@ const EditProfile = ({ onClose }) => {
           />
         </div>
 
-        {/* زر الحفظ */}
         <button
           type="submit"
           disabled={isLoading}

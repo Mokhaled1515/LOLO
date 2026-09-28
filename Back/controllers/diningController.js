@@ -34,7 +34,7 @@ const createDining = async (req, res) => {
       description,
       cuisineType,
       openingHours,
-      image, // تخزين الرابط الجاي من Cloudinary
+      image, 
       location,
     });
 

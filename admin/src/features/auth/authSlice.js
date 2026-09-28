@@ -1,11 +1,7 @@
-
-
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 const user = JSON.parse(localStorage.getItem("user"));
 const API_URL = import.meta.env.VITE_API_URL;
-
-// ================= REGISTER =================
 
 export const registerUser = createAsyncThunk(
   "auth/register",
@@ -33,8 +29,6 @@ export const registerUser = createAsyncThunk(
     }
   },
 );
-
-// ================= LOGIN =================
 
 export const loginUser = createAsyncThunk(
   "auth/login",
@@ -78,8 +72,6 @@ export const loginUser = createAsyncThunk(
   },
 );
 
-// ================= FORGOT PASSWORD =================
-
 export const forgotPassword = createAsyncThunk(
   "auth/forgotPassword",
 
@@ -103,14 +95,10 @@ export const forgotPassword = createAsyncThunk(
 
       return data;
     } catch (error) {
-      return thunkApi.rejectWithValue(
-        error.message || "Something went wrong",
-      );
+      return thunkApi.rejectWithValue(error.message || "Something went wrong");
     }
   },
 );
-
-// ================= VERIFY RESET CODE =================
 
 export const verifyResetCode = createAsyncThunk(
   "auth/verifyResetCode",
@@ -138,14 +126,10 @@ export const verifyResetCode = createAsyncThunk(
 
       return data;
     } catch (error) {
-      return thunkApi.rejectWithValue(
-        error.message || "Something went wrong",
-      );
+      return thunkApi.rejectWithValue(error.message || "Something went wrong");
     }
   },
 );
-
-// ================= RESET PASSWORD =================
 
 export const resetPassword = createAsyncThunk(
   "auth/resetPassword",
@@ -174,14 +158,10 @@ export const resetPassword = createAsyncThunk(
 
       return data;
     } catch (error) {
-      return thunkApi.rejectWithValue(
-        error.message || "Something went wrong",
-      );
+      return thunkApi.rejectWithValue(error.message || "Something went wrong");
     }
   },
 );
-
-// ================= UPDATE PROFILE =================
 
 export const updateUserProfile = createAsyncThunk(
   "auth/updateProfile",
@@ -222,8 +202,6 @@ export const updateUserProfile = createAsyncThunk(
   },
 );
 
-// ================= UPDATE ADDRESS =================
-
 export const updateUserAddress = createAsyncThunk(
   "auth/updateAddress",
 
@@ -263,8 +241,6 @@ export const updateUserAddress = createAsyncThunk(
   },
 );
 
-// ================= LOGOUT =================
-
 export const logoutUser = createAsyncThunk(
   "auth/logout",
 
@@ -291,23 +267,16 @@ export const logoutUser = createAsyncThunk(
   },
 );
 
-// ================= INITIAL STATE =================
-
 const initialState = {
   user: user ? user : null,
 
   isLoading: false,
   isSuccess: false,
   isError: false,
-
   message: "",
-
-  // Reset Password Flow
   resetEmail: "",
   resetCode: "",
 };
-
-// ================= AUTH SLICE =================
 
 export const authSlice = createSlice({
   name: "auth",
@@ -335,8 +304,6 @@ export const authSlice = createSlice({
   extraReducers: (builders) => {
     builders
 
-      // ================= REGISTER =================
-
       .addCase(registerUser.pending, (state) => {
         state.isLoading = true;
       })
@@ -354,8 +321,6 @@ export const authSlice = createSlice({
         state.user = null;
       })
 
-      // ================= LOGIN =================
-
       .addCase(loginUser.pending, (state) => {
         state.isLoading = true;
       })
@@ -372,8 +337,6 @@ export const authSlice = createSlice({
         state.message = action.payload;
       })
 
-      // ================= FORGOT PASSWORD =================
-
       .addCase(forgotPassword.pending, (state) => {
         state.isLoading = true;
         state.isError = false;
@@ -386,19 +349,14 @@ export const authSlice = createSlice({
         state.isSuccess = true;
         state.isError = false;
         state.message = action.payload?.message || "Verification code sent";
-
-        // هنحتاج الـ email في الخطوة التالية
       })
 
       .addCase(forgotPassword.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.isSuccess = false;
-        state.message =
-          action.payload || "Failed to send verification code";
+        state.message = action.payload || "Failed to send verification code";
       })
-
-      // ================= VERIFY RESET CODE =================
 
       .addCase(verifyResetCode.pending, (state) => {
         state.isLoading = true;
@@ -422,8 +380,6 @@ export const authSlice = createSlice({
           action.payload || "Invalid or expired verification code";
       })
 
-      // ================= RESET PASSWORD =================
-
       .addCase(resetPassword.pending, (state) => {
         state.isLoading = true;
         state.isError = false;
@@ -443,11 +399,8 @@ export const authSlice = createSlice({
         state.isLoading = false;
         state.isError = true;
         state.isSuccess = false;
-        state.message =
-          action.payload || "Failed to reset password";
+        state.message = action.payload || "Failed to reset password";
       })
-
-      // ================= UPDATE PROFILE =================
 
       .addCase(updateUserProfile.pending, (state) => {
         state.isLoading = true;
@@ -468,8 +421,6 @@ export const authSlice = createSlice({
         state.message = action.payload;
       })
 
-      // ================= UPDATE ADDRESS =================
-
       .addCase(updateUserAddress.pending, (state) => {
         state.isLoading = true;
       })
@@ -485,8 +436,6 @@ export const authSlice = createSlice({
         state.isError = true;
         state.message = action.payload;
       })
-
-      // ================= LOGOUT =================
 
       .addCase(logoutUser.pending, (state) => {
         state.isLoading = false;
@@ -505,4 +454,3 @@ export const authSlice = createSlice({
 export const { reset, clearResetData } = authSlice.actions;
 
 export default authSlice.reducer;
-

@@ -25,12 +25,9 @@ const userSchema = new mongoose.Schema(
     address: {
       city: { type: String, default: "" },
       street: { type: String, default: "" },
-      // building: { type: String, default: "" },
-      // phone: { type: String, default: "" },
-      // postalCode: { type: String, default: "" },
+      
       country: { type: String, default: "" },
     },
-    // صورة البروفايل (اختياري لو حابب)
     profilePic: {
       type: String,
       default: "",

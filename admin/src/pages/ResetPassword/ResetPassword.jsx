@@ -79,10 +79,8 @@ const ResetPassword = () => {
   return (
     <div className="min-h-[85vh] flex items-center justify-center px-4 py-12 bg-[#fdfbf7]">
       <div className="max-w-md w-full bg-white border border-[#e6dfd5] rounded-3xl shadow-xl p-8 md:p-10 relative overflow-hidden">
-        {/* Background Decoration */}
         <div className="absolute top-0 right-0 w-32 h-32 bg-[#64031b]/5 rounded-full blur-2xl -mr-10 -mt-10 pointer-events-none"></div>
 
-        {/* Header */}
         <div className="text-center mb-8 relative">
           <h1 className="text-3xl font-black text-[#64031b] tracking-wide mb-2">
             Reset Password
@@ -94,7 +92,6 @@ const ResetPassword = () => {
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-5 relative">
-          {/* New Password */}
           <div className="space-y-1.5">
             <label
               htmlFor="password"
@@ -184,7 +181,6 @@ const ResetPassword = () => {
             )}
           </div>
 
-          {/* Confirm Password */}
           <div className="space-y-1.5">
             <label
               htmlFor="confirmPassword"
@@ -219,7 +215,6 @@ const ResetPassword = () => {
             )}
           </div>
 
-          {/* Submit Button */}
           <button
             type="submit"
             disabled={!isPasswordStrong || password !== confirmPassword}

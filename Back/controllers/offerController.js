@@ -97,8 +97,6 @@ const updateOffer = async (req, res) => {
       });
     }
 
-    // لو الأدمن رفع صورة جديدة استخدمها
-    // لو مرفعش، احتفظ بالصورة القديمة
     const image = req.file ? req.file.path : offer.image;
 
     offer.title = title ?? offer.title;

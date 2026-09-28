@@ -27,7 +27,6 @@ const Booking = () => {
 
     const getBooking = async () => {
       try {
-        // const res = await fetch(`/api/bookings/${id}`);
         const res = await fetch(`${API_URL}/api/bookings/${id}`, {
           credentials: "include",
         });

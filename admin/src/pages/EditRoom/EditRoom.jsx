@@ -22,18 +22,15 @@ const EditRoom = () => {
     roomsNumbers: "",
   });
 
-  
   const handleAddCustomField = () => {
     setCustomFields((prev) => [...prev, { key: "", value: "" }]);
   };
-
 
   const { name, type, maxPeople, price, desc, roomsNumbers } = formData;
 
   useEffect(() => {
     const getRoom = async () => {
       try {
-        // const res = await fetch(`/api/rooms/${id}`);
         const res = await fetch(`${API_URL}/api/rooms/${id}`);
         const data = await res.json();
 
@@ -64,7 +61,6 @@ const EditRoom = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    // تحديث تلقائي للـ maxPeople عند تعديل الـ type
     if (name === "type") {
       let defaultCapacity = "1";
       if (value === "Double") defaultCapacity = "2";
@@ -165,7 +161,11 @@ const EditRoom = () => {
                 <input
                   type="number"
                   name="maxPeople"
-                  value={maxPeople !== undefined && maxPeople !== null ? maxPeople : ""}
+                  value={
+                    maxPeople !== undefined && maxPeople !== null
+                      ? maxPeople
+                      : ""
+                  }
                   min="1"
                   onChange={handleChange}
                   className="p-3 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-[#64031b] bg-gray-50"
@@ -218,59 +218,60 @@ const EditRoom = () => {
               </span>
             </div>
 
-               {/* Dynamic Custom Fields (Key & Value) */}
-                  {/* Dynamic Custom Fields (Key & Value) */}
-<div className="border-t border-gray-200 pt-4 flex flex-col gap-3">
-  <div className="flex justify-between items-center mb-1">
-    <label className="font-semibold text-gray-700 text-sm">Custom Attributes / Fields</label>
-    <button
-      type="button"
-      onClick={handleAddCustomField}
-      className="flex items-center gap-1 text-xs bg-[#5A1827] text-white px-3 py-1.5 rounded-md hover:bg-[#47121e] transition cursor-pointer"
-    >
-      <MdAdd size={16} /> Add Field
-    </button>
-  </div>
+            <div className="border-t border-gray-200 pt-4 flex flex-col gap-3">
+              <div className="flex justify-between items-center mb-1">
+                <label className="font-semibold text-gray-700 text-sm">
+                  Custom Attributes / Fields
+                </label>
+                <button
+                  type="button"
+                  onClick={handleAddCustomField}
+                  className="flex items-center gap-1 text-xs bg-[#5A1827] text-white px-3 py-1.5 rounded-md hover:bg-[#47121e] transition cursor-pointer"
+                >
+                  <MdAdd size={16} /> Add Field
+                </button>
+              </div>
 
-  {/* هنا يتم عرض الحقول المضافة ديناميكياً */}
-  {customFields.map((field, index) => (
-    <div key={index} className="flex gap-2 items-center">
-      <input
-        type="text"
-        placeholder="Key (e.g. View)"
-        value={field.key}
-        onChange={(e) => {
-          const newFields = [...customFields];
-          newFields[index].key = e.target.value;
-          setCustomFields(newFields);
-        }}
-        className="p-2.5 flex-1 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-[#64031b] bg-gray-50"
-      />
-      <input
-        type="text"
-        placeholder="Value (e.g. Sea View)"
-        value={field.value}
-        onChange={(e) => {
-          const newFields = [...customFields];
-          newFields[index].value = e.target.value;
-          setCustomFields(newFields);
-        }}
-        className="p-2.5 flex-1 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-[#64031b] bg-gray-50"
-      />
-      <button
-        type="button"
-        onClick={() => {
-          const newFields = customFields.filter((_, i) => i !== index);
-          setCustomFields(newFields);
-        }}
-        className="text-red-500 hover:text-red-700 font-bold px-2 py-1 text-sm cursor-pointer"
-        title="Remove field"
-      >
-        ✕
-      </button>
-    </div>
-  ))}
-</div>
+              {customFields.map((field, index) => (
+                <div key={index} className="flex gap-2 items-center">
+                  <input
+                    type="text"
+                    placeholder="Key (e.g. View)"
+                    value={field.key}
+                    onChange={(e) => {
+                      const newFields = [...customFields];
+                      newFields[index].key = e.target.value;
+                      setCustomFields(newFields);
+                    }}
+                    className="p-2.5 flex-1 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-[#64031b] bg-gray-50"
+                  />
+                  <input
+                    type="text"
+                    placeholder="Value (e.g. Sea View)"
+                    value={field.value}
+                    onChange={(e) => {
+                      const newFields = [...customFields];
+                      newFields[index].value = e.target.value;
+                      setCustomFields(newFields);
+                    }}
+                    className="p-2.5 flex-1 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-[#64031b] bg-gray-50"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const newFields = customFields.filter(
+                        (_, i) => i !== index,
+                      );
+                      setCustomFields(newFields);
+                    }}
+                    className="text-red-500 hover:text-red-700 font-bold px-2 py-1 text-sm cursor-pointer"
+                    title="Remove field"
+                  >
+                    ✕
+                  </button>
+                </div>
+              ))}
+            </div>
             <button
               type="submit"
               disabled={isLoading}

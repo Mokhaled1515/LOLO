@@ -50,10 +50,7 @@ const Login = () => {
   return (
     <div className="min-h-[85vh] flex items-center justify-center px-4 py-12 bg-[#fdfbf7]">
       <div className="max-w-md w-full bg-white border border-[#e6dfd5] rounded-3xl shadow-xl p-8 md:p-10 relative overflow-hidden">
-        {/* لمسة جمالية كلاسيكية في الخلفية */}
         <div className="absolute top-0 right-0 w-32 h-32 bg-[#64031b]/5 rounded-full blur-2xl -mr-10 -mt-10 pointer-events-none"></div>
-
-        {/* العنوان الرئيسي */}
         <div className="text-center mb-8">
           <h1 className="text-3xl font-black text-[#64031b] tracking-wide mb-2">
             Welcome Back
@@ -63,9 +60,7 @@ const Login = () => {
           </p>
         </div>
 
-        {/* الفورم */}
         <form onSubmit={handleSubmit} className="space-y-5">
-          {/* حقل البريد الإلكتروني */}
           <div className="space-y-1.5">
             <label
               htmlFor="email"
@@ -84,28 +79,7 @@ const Login = () => {
               className="w-full px-4 py-3 bg-gray-50/50 border border-gray-300 rounded-xl text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#64031b] focus:bg-white transition text-sm"
             />
           </div>
-          {/* حقل كلمة المرور */}
-          {/*           
-          <div className="space-y-1.5">
-            <label
-              htmlFor="password"
-              className="block text-xs font-bold uppercase tracking-wider text-gray-700"
-            >
-              Password
-            </label>
-            <input
-              type="password"
-              id="password"
-              placeholder="Enter Password"
-              value={password}
-              name="password"
-              onChange={handleChange}
-              required
-              className="w-full px-4 py-3 bg-gray-50/50 border border-gray-300 rounded-xl text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#64031b] focus:bg-white transition text-sm"
-            />
-          </div> */}
 
-          {/* حقل كلمة المرور */}
           <div className="space-y-1.5">
             <div className="flex items-center justify-between">
               <label
@@ -114,7 +88,6 @@ const Login = () => {
               >
                 Password
               </label>
-
             </div>
 
             <input
@@ -127,16 +100,15 @@ const Login = () => {
               required
               className="w-full px-4 py-3 bg-gray-50/50 border border-gray-300 rounded-xl text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#64031b] focus:bg-white transition text-sm"
             />
-            
-              <Link
-                to="/forgot-password"
-                className="text-xs font-semibold text-[#64031b] hover:underline"
-              >
-                Forgot Password?
-              </Link>
+
+            <Link
+              to="/forgot-password"
+              className="text-xs font-semibold text-[#64031b] hover:underline"
+            >
+              Forgot Password?
+            </Link>
           </div>
 
-          {/* زر الإرسال */}
           <button
             type="submit"
             className="w-full py-3.5 mt-2 bg-[#64031b] text-white font-bold rounded-xl hover:bg-[#4d0214] active:scale-[0.99] transition shadow-lg cursor-pointer text-sm tracking-wide"
@@ -145,9 +117,8 @@ const Login = () => {
           </button>
         </form>
 
-        {/* رابط إضافي للتسجيل لو حابب */}
         <div className="text-center mt-6 text-sm text-gray-500">
-          Don't have an account?{" "}
+          Don't have an account?
           <Link
             to="/register"
             className="text-[#64031b] font-bold hover:underline"

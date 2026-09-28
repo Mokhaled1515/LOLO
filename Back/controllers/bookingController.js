@@ -92,7 +92,6 @@ const updateBooking = async (req, res, next) => {
       res.status(400);
       throw new Error("Cannot create booking");
     }
-    // const bookings = await Booking.find();
     const bookings = await Booking.find()
       .populate("roomId")
       .populate("userId", "-password");
@@ -116,7 +115,6 @@ const deleteBooking = async (req, res, next) => {
   }
 };
 
-// إضافة جلب حجوزات المستخدم الحالي
 const getUserBookings = async (req, res, next) => {
   try {
      console.log("AUTH USER:", req.user);
@@ -142,5 +140,4 @@ module.exports = {
   deleteBooking,
   getBooking,
   getUserBookings
-  // getBooking,
 };

@@ -43,16 +43,14 @@ const Home = () => {
 
   const currentItem = bannerItems[currentImageIndex];
 
-  // 🌟 التقليب التلقائي للصور فقط (كل 4 ثوانٍ مثلاً ليكون الوقت مريح للعين)
   useEffect(() => {
-    // إذا كان العنصر الحالي فيديو، لا نkـعل الـ timer العادي يقطعه، بل ندع حدث الـ onEnded أو نحدد وقتاً أطول للفيديو
     if (currentItem.type === "video") return;
 
     const timer = setInterval(() => {
       setCurrentImageIndex((prev) =>
         prev === bannerItems.length - 1 ? 0 : prev + 1,
       );
-    }, 2000); // زوّدت الوقت لـ 4 ثوانٍ عشان الصور ما تتخطفش بسرعة
+    }, 2000);
 
     return () => clearInterval(timer);
   }, [currentImageIndex, bannerItems.length, currentItem.type]);
@@ -69,7 +67,6 @@ const Home = () => {
     );
   };
 
-  // جلب الغرف والعروض معاً
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -110,7 +107,6 @@ const Home = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 text-gray-800">
-      {/* 1. Hero Section */}
       <div className="relative bg-[#64031b] text-white py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto text-center">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight mb-4">
@@ -121,7 +117,6 @@ const Home = () => {
             perfect room today with the best rates guaranteed.
           </p>
 
-          {/* Quick Search Bar */}
           <form
             onSubmit={handleSearch}
             className="bg-white p-4 rounded-2xl shadow-2xl max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-4 text-gray-800"
@@ -198,7 +193,6 @@ const Home = () => {
         </div>
       </div>
 
-      {/* 2. Special Offers Section */}
       {offers.length > 0 && (
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <div className="text-center mb-12">
@@ -265,7 +259,6 @@ const Home = () => {
         </div>
       )}
 
-      {/* 3. Features / Why Choose Us */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-black text-[#64031b]">
@@ -318,7 +311,6 @@ const Home = () => {
         </div>
       </div>
 
-      {/* 4. Full Width Banner Section with Prev/Next Sliders (Supports Images & Videos) */}
       <div className="w-full my-8 relative group overflow-hidden shadow-lg bg-black">
         <div className="w-full sm:hidden relative h-auto flex items-center justify-center">
           <img
@@ -330,7 +322,6 @@ const Home = () => {
         </div>
 
         <div className="w-full h-[320px] sm:h-[450px] lg:h-[650px] relative hidden sm:block">
-          {/* 🌟 عرض الفيديو أو الصورة بناءً على نوع العنصر الحالي مع ربط حدث انتهاء الفيديو */}
           {currentItem.type === "video" ? (
             <video
               ref={videoRef}
@@ -339,7 +330,6 @@ const Home = () => {
               muted
               playsInline
               onEnded={() => {
-                // الانتقال تلقائياً للعنصر التالي فور انتهاء الفيديو تماماً
                 setCurrentImageIndex((prev) =>
                   prev === bannerItems.length - 1 ? 0 : prev + 1,
                 );
@@ -393,7 +383,6 @@ const Home = () => {
         </div>
       </div>
 
-      {/* 5. Featured Rooms Preview Section */}
       <div className="bg-gray-100 py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="flex justify-between items-end mb-10">
@@ -464,7 +453,6 @@ const Home = () => {
         </div>
       </div>
 
-      {/* 6. Footer Banner / CTA */}
       <div className="bg-[#64031b] text-white py-14 px-4 text-center">
         <h2 className="text-3xl font-black mb-3">Ready to Experience LOLO?</h2>
         <p className="text-gray-300 text-sm max-w-xl mx-auto mb-6">
@@ -478,7 +466,7 @@ const Home = () => {
           >
             Get Started
           </Link>
-         
+
           <Link
             to="/login"
             className="px-6 py-3 bg-transparent border-2 border-white text-white font-bold rounded-xl hover:bg-white hover:text-[#64031b] transition"

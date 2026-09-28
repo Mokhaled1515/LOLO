@@ -22,7 +22,7 @@ export const fetchOffer = createAsyncThunk(
       if (!res.ok) {
         return thunkApi.rejectWithValue(data);
       }
-      return data.data; // بناءً على الـ Controller اللي بيرجع data.data
+      return data.data; 
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
     }
@@ -58,9 +58,7 @@ export const createOffer = createAsyncThunk(
     try {
       let bodyData = offerData;
       const headers = {};
-      //   const headers = {
-      //     credentials: "include",
-      //   };
+     
 
       if (!(offerData instanceof FormData)) {
         headers["Content-Type"] = "application/json";

@@ -40,7 +40,7 @@ export const getBookings = createAsyncThunk(
         headers: {
           "Content-Type": "application/json",
         },
-        credentials: "include", // دي مهمة جداً عشان الـ Cookie الخاصة بالأدمن تروح مع الطلب
+        credentials: "include", 
       });
       const data = await res.json();
 

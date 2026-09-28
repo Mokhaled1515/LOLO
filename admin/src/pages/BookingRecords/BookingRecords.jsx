@@ -39,7 +39,6 @@ const BookingRecords = ({ onClose }) => {
         )}
       </div>
 
-      {/* محتوى الحجوزات أو التحميل أو الفارغ */}
       {isLoading ? (
         <div className="flex flex-col justify-center items-center py-12 gap-2">
           <div className="w-8 h-8 border-4 border-[#64031b] border-t-transparent rounded-full animate-spin"></div>
@@ -63,17 +62,14 @@ const BookingRecords = ({ onClose }) => {
           </Link>
         </div>
       ) : (
-        /* قائمة الحجوزات مع تفعيل الـ Scroll الداخلي */
         <div className="space-y-3.5 overflow-y-auto pr-1 flex-1 max-h-[60vh] custom-scrollbar">
           {safeBookings.map((item) => (
             <div
               key={item._id}
               className="border border-gray-200 rounded-2xl p-4 bg-white shadow-sm hover:shadow-md transition flex flex-col gap-3.5 relative overflow-hidden group"
             >
-              {/* شريط ملون جانبي جمالي */}
               <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-[#64031b]"></div>
 
-              {/* صف الاسم والسعر وحالة الحجز */}
               <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 pl-2">
                 <div>
                   <h3 className="font-bold text-base sm:text-lg text-gray-800">
@@ -95,7 +91,6 @@ const BookingRecords = ({ onClose }) => {
                 </span>
               </div>
 
-              {/* تفاصيل التواريخ وطريقة الدفع بتصميم Grid منظم ومرتب */}
               <div className="grid grid-cols-3 gap-2 pt-3 border-t border-gray-100 text-xs sm:text-sm pl-2 bg-gray-50/60 p-2.5 rounded-xl">
                 <div>
                   <p className="text-gray-400 text-[11px] font-medium uppercase tracking-wider">Check In</p>
@@ -127,7 +122,6 @@ const BookingRecords = ({ onClose }) => {
         </div>
       )}
 
-      {/* زر الإغلاق السفلي */}
       <div className="pt-3 mt-2 border-t border-gray-100">
         <button
           onClick={onClose}

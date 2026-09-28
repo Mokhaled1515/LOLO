@@ -9,7 +9,6 @@ const initialState = {
   message: "",
 };
 
-// 1. جلب جميع وسائل الراحة (Public)
 export const fetchAmenity = createAsyncThunk(
   "amenity/fetchAll",
   async (_, thunkApi) => {
@@ -23,14 +22,13 @@ export const fetchAmenity = createAsyncThunk(
       if (!res.ok) {
         return thunkApi.rejectWithValue(data);
       }
-      return data.data; // بناءً على الـ Controller اللي بيرجع data.data
+      return data.data; 
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
     }
   }
 );
 
-// 2. إضافة وسيلة راحة جديدة (Admin Only)
 export const createAmenity = createAsyncThunk(
   "amenity/create",
   async (amenityData, thunkApi) => {
@@ -54,7 +52,6 @@ export const createAmenity = createAsyncThunk(
   }
 );
 
-// 3. حذف وسيلة راحة (Admin Only)
 export const deleteAmenity = createAsyncThunk(
   "amenity/delete",
   async (id, thunkApi) => {
@@ -118,7 +115,6 @@ export const amenitySlice = createSlice({
         state.isError = true;
         state.message = action.payload;
       })
-      // Delete Amenity
       .addCase(deleteAmenity.pending, (state) => {
         state.isLoading = true;
       })

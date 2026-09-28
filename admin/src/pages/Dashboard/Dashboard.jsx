@@ -16,18 +16,7 @@ const Dashboard = () => {
   const { bookings, isLoading, isSuccess } = useSelector(
     (state) => state.booking,
   );
-
-  // حالة التحكم في النموذج المعروض للاضافة (null = لا شيء, 'dining', 'offer', 'amenity')
   const [activeForm, setActiveForm] = useState(null);
-
-  // States للنماذج
-  // const [diningData, setDiningData] = useState({
-  //   title: "",
-  //   description: "",
-  //   price: "",
-  //   image: "",
-  // });
-
   const [diningData, setDiningData] = useState({
     name: "",
     description: "",
@@ -39,7 +28,6 @@ const Dashboard = () => {
 
   const [offerData, setOfferData] = useState({
     title: "",
-    // discount: "",
     description: "",
     discountPercentage: "",
     image: "",
@@ -66,7 +54,6 @@ const Dashboard = () => {
     }
   }, [isSuccess, dispatch]);
 
-  // Submit Handlers
   const handleDiningSubmit = async (e) => {
     e.preventDefault();
 
@@ -88,29 +75,6 @@ const Dashboard = () => {
     }
   };
 
-  // const handleOfferSubmit = (e) => {
-  //   e.preventDefault();
-  //   dispatch(createOffer(offerData));
-  //   toast.success("Offer created successfully!");
-  //   setOfferData({ title: "", discount: "", description: "", image: "" });
-  //   setActiveForm(null);
-  // };
-
-  // const handleOfferSubmit = (e) => {
-  //   e.preventDefault();
-
-  //   const formData = new FormData();
-  //   formData.append("title", offerData.title);
-  //   formData.append("description", offerData.description);
-  //   formData.append("discountPercentage", offerData.discountPercentage);
-  //   formData.append("validUntil", offerData.validUntil);
-
-  //   if (offerData.image) {
-  //     formData.append("image", offerData.image); // ملف الصورة الفعلي اللي جاي من الـ input type="file"
-  //   }
-
-  //   dispatch(createOffer(formData));
-  // };
 
   const handleOfferSubmit = async (e) => {
     e.preventDefault();
@@ -156,7 +120,6 @@ const Dashboard = () => {
   return (
     <div className="min-h-screen bg-[#fdfbf7] py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto space-y-8">
-        {/* ترويسة لوحة التحكم أزرار الإضافة */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center bg-white p-8 rounded-3xl border border-[#e6dfd5] shadow-sm gap-4">
           <div>
             <span className="text-xs font-bold uppercase tracking-widest text-[#64031b] bg-[#64031b]/10 px-3 py-1 rounded-full">
@@ -171,7 +134,6 @@ const Dashboard = () => {
             </p>
           </div>
 
-          {/* أزرار الإضافة السريعة */}
           <div className="flex flex-wrap gap-2">
             <Link
               to="/admin/add-room"
@@ -179,14 +141,7 @@ const Dashboard = () => {
             >
               + Add Room
             </Link>
-            {/* <button
-              onClick={() =>
-                setActiveForm(activeForm === "dining" ? null : "dining")
-              }
-              className="px-4 py-2.5 bg-amber-700 text-white text-xs font-bold rounded-xl hover:bg-amber-800 transition shadow"
-            >
-              {activeForm === "dining" ? "Close" : "+ Add Dining"}
-            </button> */}
+          
             <button
               onClick={() =>
                 setActiveForm(activeForm === "offer" ? null : "offer")
@@ -195,18 +150,10 @@ const Dashboard = () => {
             >
               {activeForm === "offer" ? "Close" : "+ Add Offer"}
             </button>
-            {/* <button
-              onClick={() =>
-                setActiveForm(activeForm === "amenity" ? null : "amenity")
-              }
-              className="px-4 py-2.5 bg-blue-700 text-white text-xs font-bold rounded-xl hover:bg-blue-800 transition shadow"
-            >
-              {activeForm === "amenity" ? "Close" : "+ Add Amenity"}
-            </button> */}
+            
           </div>
         </div>
 
-        {/* نموذج إضافة Dining */}
         {activeForm === "dining" && (
           <div className="bg-white p-8 rounded-[2rem] border border-[#e6dfd5] shadow-xl transition-all duration-300">
             <div className="flex items-center justify-between mb-6 pb-4 border-b border-[#e6dfd5]/60">
@@ -370,7 +317,6 @@ const Dashboard = () => {
           </div>
         )}
 
-        {/* نموذج إضافة Offer */}
         {activeForm === "offer" && (
           <div className="bg-white p-8 rounded-[2rem] border border-[#e6dfd5] shadow-xl transition-all duration-300">
             <div className="flex items-center justify-between mb-6 pb-4 border-b border-[#e6dfd5]/60">
@@ -390,110 +336,7 @@ const Dashboard = () => {
               </button>
             </div>
 
-            {/* <form onSubmit={handleOfferSubmit} className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label className="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">
-                    Offer Title
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="e.g. Summer Getaway"
-                    required
-                    className="p-3.5 bg-[#fdfbf7] border border-[#e6dfd5] rounded-2xl w-full focus:outline-none focus:border-[#64031b] transition"
-                    value={offerData.title}
-                    onChange={(e) =>
-                      setOfferData({ ...offerData, title: e.target.value })
-                    }
-                  />
-                </div>
-                <div>
-                  <label className="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">
-                    Discount Value
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="e.g. 25% OFF"
-                    required
-                    className="p-3.5 bg-[#fdfbf7] border border-[#e6dfd5] rounded-2xl w-full focus:outline-none focus:border-[#64031b] transition"
-                    value={offerData.discount}
-                    onChange={(e) =>
-                      setOfferData({ ...offerData, discount: e.target.value })
-                    }
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">
-                  Description
-                </label>
-                <textarea
-                  rows="3"
-                  placeholder="Explain what is included in this offer..."
-                  required
-                  className="p-3.5 bg-[#fdfbf7] border border-[#e6dfd5] rounded-2xl w-full focus:outline-none focus:border-[#64031b] transition"
-                  value={offerData.description}
-                  onChange={(e) =>
-                    setOfferData({ ...offerData, description: e.target.value })
-                  }
-                />
-              </div>
-
-              <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">
-                  Offer Banner Image
-                </label>
-                <div className="flex items-center justify-center w-full">
-                  <label className="flex flex-col items-center justify-center w-full h-36 border-2 border-[#e6dfd5] border-dashed rounded-2xl cursor-pointer bg-[#fdfbf7] hover:bg-[#f5efe6] transition">
-                    <div className="flex flex-col items-center justify-center pt-5 pb-6 px-4">
-                      <svg
-                        className="w-8 h-8 mb-2 text-[#64031b]"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="1.5"
-                          d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-                        />
-                      </svg>
-                      <p className="text-xs text-gray-500 font-medium">
-                        <span className="font-bold text-[#64031b]">
-                          Click to upload
-                        </span>{" "}
-                        or drag and drop
-                      </p>
-                      <p className="text-[10px] text-gray-400 mt-1">
-                        PNG, JPG, WEBP (MAX. 5MB)
-                      </p>
-                    </div>
-                    <input
-                      type="file"
-                      accept="image/*"
-                      className="hidden"
-                      onChange={(e) => {
-                        const file = e.target.files[0];
-                        if (file) {
-                          setOfferData({ ...offerData, image: file });
-                          toast.info(`Selected: ${file.name}`);
-                        }
-                      }}
-                    />
-                  </label>
-                </div>
-              </div>
-
-              <button
-                type="submit"
-                className="w-full py-4 bg-[#64031b] text-white font-bold text-sm tracking-wider uppercase rounded-2xl hover:bg-[#4d0214] transition shadow-lg shadow-[#64031b]/20"
-              >
-                Save Special Offer
-              </button>
-            </form> */}
-
+          
             <form onSubmit={handleOfferSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
@@ -512,7 +355,6 @@ const Dashboard = () => {
                   />
                 </div>
 
-                {/* تم تعديل discount إلى discountPercentage لتطابق الباك إند */}
                 <div>
                   <label className="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">
                     Discount Percentage (%)
@@ -533,7 +375,6 @@ const Dashboard = () => {
                 </div>
               </div>
 
-              {/* تم إضافة حقل validUntil لأنه مطلوب إجباري في الباك إند */}
               <div>
                 <label className="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">
                   Valid Until Date
@@ -565,22 +406,6 @@ const Dashboard = () => {
                 />
               </div>
 
-              {/* <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">
-                  Offer Banner Image (URL or Cloudinary Link)
-                </label>
-                {/* لو بتكتب رابط الصورة مباشرة أو لو بترفعها Cloudinary */}
-              {/* <input
-                  type="text"
-                  placeholder="Paste image URL here"
-                  required
-                  className="p-3.5 bg-[#fdfbf7] border border-[#e6dfd5] rounded-2xl w-full focus:outline-none focus:border-[#64031b] transition"
-                  value={offerData.image}
-                  onChange={(e) =>
-                    setOfferData({ ...offerData, image: e.target.value })
-                  }
-                /> */}
-              {/* </div> */}
 
               <div>
                 <label className="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">
@@ -630,7 +455,6 @@ const Dashboard = () => {
                         const file = e.target.files[0];
                         if (file) {
                           const previewUrl = URL.createObjectURL(file);
-                          // بنحفظ الملف الحقيقي والـ Preview في الـ state عشان نبعتهم مع الـ Form
                           setOfferData({
                             ...offerData,
                             image: file,
@@ -653,7 +477,6 @@ const Dashboard = () => {
           </div>
         )}
 
-        {/* نموذج إضافة Amenity */}
         {activeForm === "amenity" && (
           <div className="bg-white p-8 rounded-[2rem] border border-[#e6dfd5] shadow-xl transition-all duration-300">
             <div className="flex items-center justify-between mb-6 pb-4 border-b border-[#e6dfd5]/60">
@@ -738,7 +561,6 @@ const Dashboard = () => {
           </div>
         )}
 
-        {/* قسم الإحصائيات السريعة */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           <div className="bg-white p-6 rounded-3xl border border-[#e6dfd5] shadow-sm flex items-center space-x-4">
             <div className="w-14 h-14 bg-[#64031b]/10 rounded-2xl flex items-center justify-center text-[#64031b]">
@@ -793,7 +615,6 @@ const Dashboard = () => {
           </div>
         </div>
 
-        {/* قسم الحجوزات */}
         <div className="bg-white rounded-3xl border border-[#e6dfd5] shadow-sm overflow-hidden">
           <div className="p-8 border-b border-[#e6dfd5]/60 flex justify-between items-center bg-[#fdfbf7]/50">
             <div>

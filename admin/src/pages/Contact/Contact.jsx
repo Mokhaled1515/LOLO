@@ -45,7 +45,6 @@ const Contact = () => {
     try {
       setLoading(true);
 
-      // استخدام fetch العادي لإرسال البيانات للـ Backend
       const response = await fetch(`${API_URL}/api/contact`, {
         method: "POST",
         headers: {
@@ -79,12 +78,10 @@ const Contact = () => {
 
   return (
     <div className="min-h-screen bg-[#fdfbf7] py-10 sm:py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-      {/* Background Decoration */}
       <div className="absolute top-0 left-0 w-72 h-72 bg-[#64031b]/5 rounded-full blur-3xl pointer-events-none -ml-12 -mt-12" />
       <div className="absolute bottom-0 right-0 w-80 h-80 bg-[#e6dfd5]/40 rounded-full blur-3xl pointer-events-none -mr-12 -mb-12" />
 
       <div className="max-w-6xl mx-auto relative z-10">
-        {/* Header */}
         <div className="text-center mb-8 sm:mb-10">
           <span className="text-xs font-bold uppercase tracking-widest text-[#64031b] bg-[#64031b]/10 px-3.5 py-1.5 rounded-full inline-block">
             Get In Touch
@@ -100,16 +97,13 @@ const Contact = () => {
           </p>
         </div>
 
-        {/* Main Content */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
-          {/* Contact Information */}
           <div className="lg:col-span-5 bg-white border border-[#e6dfd5] rounded-3xl shadow-sm p-6 sm:p-8">
             <h2 className="text-xl sm:text-2xl font-black text-[#64031b] mb-6">
               Let&apos;s Talk
             </h2>
 
             <div className="space-y-5">
-              {/* Location */}
               <div className="flex items-start gap-4">
                 <div className="shrink-0 w-11 h-11 rounded-xl bg-[#64031b]/10 text-[#64031b] flex items-center justify-center">
                   <FaMapMarkerAlt />
@@ -125,7 +119,6 @@ const Contact = () => {
                 </div>
               </div>
 
-              {/* Phone */}
               <div className="flex items-start gap-4">
                 <div className="shrink-0 w-11 h-11 rounded-xl bg-[#64031b]/10 text-[#64031b] flex items-center justify-center">
                   <FaPhoneAlt />
@@ -141,7 +134,6 @@ const Contact = () => {
                 </div>
               </div>
 
-              {/* Email */}
               <div className="flex items-start gap-4">
                 <div className="shrink-0 w-11 h-11 rounded-xl bg-[#64031b]/10 text-[#64031b] flex items-center justify-center">
                   <FaEnvelope />
@@ -157,7 +149,6 @@ const Contact = () => {
                 </div>
               </div>
 
-              {/* Working Hours */}
               <div className="flex items-start gap-4">
                 <div className="shrink-0 w-11 h-11 rounded-xl bg-[#64031b]/10 text-[#64031b] flex items-center justify-center">
                   <FaClock />
@@ -174,7 +165,6 @@ const Contact = () => {
               </div>
             </div>
 
-            {/* Small Note */}
             <div className="mt-8 pt-6 border-t border-[#e6dfd5]">
               <p className="text-xs sm:text-sm text-gray-500 leading-relaxed">
                 Our team is always ready to assist you with reservations,
@@ -183,14 +173,12 @@ const Contact = () => {
             </div>
           </div>
 
-          {/* Contact Form */}
           <div className="lg:col-span-7 bg-white border border-[#e6dfd5] rounded-3xl shadow-sm p-6 sm:p-8">
             <h2 className="text-xl sm:text-2xl font-black text-[#64031b] mb-6">
               Send Us a Message
             </h2>
 
             <form onSubmit={handleSubmit} className="space-y-4">
-              {/* Name + Email */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-xs font-semibold text-gray-700 mb-1.5">
@@ -223,7 +211,6 @@ const Contact = () => {
                 </div>
               </div>
 
-              {/* Subject */}
               <div>
                 <label className="block text-xs font-semibold text-gray-700 mb-1.5">
                   Subject
@@ -239,7 +226,6 @@ const Contact = () => {
                 />
               </div>
 
-              {/* Message */}
               <div>
                 <label className="block text-xs font-semibold text-gray-700 mb-1.5">
                   Message
@@ -255,7 +241,6 @@ const Contact = () => {
                 />
               </div>
 
-              {/* Submit */}
               <button
                 type="submit"
                 disabled={loading}

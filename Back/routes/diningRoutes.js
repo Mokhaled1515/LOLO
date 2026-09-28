@@ -5,7 +5,7 @@ const {
   createDining,
   deleteDining,
 } = require("../controllers/diningController");
-const { auth, admin } = require("../middleware/auth"); // تأكد من مسار الـ middleware عندك
+const { auth, admin } = require("../middleware/auth"); 
 const upload = require("../middleware/uploadMiddleware");
 
 router

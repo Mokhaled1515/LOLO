@@ -8,25 +8,19 @@ const VerifyResetCode = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-
   const email = location.state?.email || "";
-
   const [code, setCode] = useState("");
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     if (!email) {
       toast.error("Email is missing. Please request a new code.");
       navigate("/forgot-password");
       return;
     }
-
     if (!/^\d{6}$/.test(code)) {
       toast.error("Please enter a valid 6-digit code");
       return;
     }
-
     try {
       await dispatch(
         verifyResetCode({
@@ -124,13 +118,6 @@ const VerifyResetCode = () => {
         </form>
 
         <div className="mt-6 flex flex-col gap-3 text-center">
-          {/* <button
-            type="button"
-            onClick={() => navigate("/forgot-password")}
-            className="text-sm font-semibold text-[#64031b] hover:underline"
-          >
-            Send a new code
-          </button> */}
           <button
             type="button"
             onClick={handleResendCode}

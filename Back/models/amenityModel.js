@@ -12,24 +12,24 @@ const amenitySchema = new mongoose.Schema(
       required: [true, "Please provide a detailed description of the service."],
     },
     icon: {
-      type: String, // لو حابب تستخدم أيقونة (مثل FontAwesome أو Lucide)
+      type: String, 
       default: "FaConciergeBell",
     },
     image: {
-      type: String, // رابط الصورة المحفوظة على Cloudinary لتوضيح شكل الخدمة
+      type: String, 
       required: [true, "يرجى إرفاق صورة للمرفق"],
     },
     availability: {
-      type: String, // مواعيد العمل أو التوافر (مثال: متاحة 24 ساعة، أو من 8 صباحاً لـ 10 مساءً)
+      type: String, 
       required: [true, "Please specify availability dates."],
     },
     isFree: {
       type: Boolean,
-      default: true, // لتحديد ما إذا كانت الخدمة مجانية للنزلاء أم برسوم إضافية
+      default: true, 
     },
     isActive: {
       type: Boolean,
-      default: true, // للتحكم في ظهورها للعملاء
+      default: true, 
     },
   },
   {

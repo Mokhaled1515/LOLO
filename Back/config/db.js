@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const connectDB = async () => {
   try {
-    console.log("MONGO_URL:", process.env.MONGO_URL); // ← هنا نطبع القيمة
+    console.log("MONGO_URL:", process.env.MONGO_URL); 
     conn = await mongoose.connect(process.env.MONGO_URL);
     console.log(`connected to database ${conn.connection.host}`);
   } catch (error) {

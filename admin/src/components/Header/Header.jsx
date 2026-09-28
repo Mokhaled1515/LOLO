@@ -38,16 +38,13 @@ const Header = () => {
     <>
       <header className="bg-[#64031b] text-white shadow-md sticky top-0 z-[100] border-b border-[#800423]">
         <div className="container mx-auto px-4 md:px-6 h-20 flex items-center justify-between">
-          {/* الشعار */}
           <Link to="/" className="flex items-center space-x-2">
             <h1 className="text-xl md:text-3xl font-extrabold tracking-wider text-amber-100 hover:text-white transition">
               LOLO
             </h1>
           </Link>
 
-          {/* روابط الشاشات الكبيرة */}
           <nav className="hidden lg:flex items-center space-x-6 space-x-reverse">
-            {/* الخدمات والروابط تظهر للمستخدم العادي المسجل دخول فقط */}
             {user && !user.isAdmin && (
               <>
                 <Link
@@ -56,24 +53,14 @@ const Header = () => {
                 >
                   Rooms
                 </Link>
-                {/* <Link
-                  to="/dining"
-                  className="text-amber-100/90 hover:text-white font-medium transition px-3 py-2 rounded-lg hover:bg-white/10"
-                >
-                  Dining
-                </Link> */}
+
                 <Link
                   to="/offers"
                   className="text-amber-100/90 hover:text-white font-medium transition px-3 py-2 rounded-lg hover:bg-white/10"
                 >
                   Offers
                 </Link>
-                {/* <Link
-                  to="/amenities"
-                  className="text-amber-100/90 hover:text-white font-medium transition px-3 py-2 rounded-lg hover:bg-white/10"
-                >
-                  Amenities
-                </Link> */}
+
                 <button
                   onClick={() => setActiveModal("bookings")}
                   className="text-amber-100/90 hover:text-white font-medium transition px-3 py-2 rounded-lg hover:bg-white/10 cursor-pointer"
@@ -83,7 +70,6 @@ const Header = () => {
               </>
             )}
 
-            {/* روابط الأدمن فقط */}
             {user && user.isAdmin && (
               <>
                 <Link
@@ -108,9 +94,7 @@ const Header = () => {
             )}
           </nav>
 
-          {/* الجانب الأيمن (البروفايل + زر تسجيل الدخول للزوار + زر الموبايل) */}
           <div className="flex items-center space-x-3 space-x-reverse">
-            {/* زر البروفايل لو مسجل دخول */}
             {user && (
               <div className="relative inline-block text-left">
                 <button
@@ -135,7 +119,6 @@ const Header = () => {
                   </div>
                 </button>
 
-                {/* القائمة المنسدلة للبروفايل */}
                 {dropdownOpen && (
                   <div className="absolute right-0 left-auto mt-3 w-56 max-w-[calc(100vw-2rem)] rounded-xl shadow-2xl bg-[#fdfbf7] border border-[#e6dfd5] py-2 z-50 text-right text-gray-800 animate-fadeIn">
                     <div className="px-4 py-3 border-b border-[#e6dfd5] text-sm font-bold text-[#64031b] truncate">
@@ -182,7 +165,6 @@ const Header = () => {
               </div>
             )}
 
-            {/* لو مش مسجل دخول، تظهر أزرار Login و Register للشاشات الكبيرة */}
             {!user && (
               <div className="hidden md:flex items-center space-x-3 space-x-reverse">
                 <Link
@@ -200,7 +182,6 @@ const Header = () => {
               </div>
             )}
 
-            {/* زر الموبايل منيو */}
             <button
               onClick={() => {
                 setMobileMenuOpen(!mobileMenuOpen);
@@ -235,7 +216,6 @@ const Header = () => {
           </div>
         </div>
 
-        {/* قائمة الموبايل */}
         <div
           className={`relative z-[105] lg:hidden bg-[#520216] border-t border-[#800423] px-6 overflow-hidden transition-all duration-300 ease-in-out shadow-xl ${
             mobileMenuOpen
@@ -244,7 +224,6 @@ const Header = () => {
           }`}
         >
           <div className="space-y-3 text-right">
-            {/* لو مسجل وعادي */}
             {user && !user.isAdmin && (
               <>
                 <Link
@@ -275,7 +254,6 @@ const Header = () => {
               </>
             )}
 
-            {/* لو مسجل وأدمن */}
             {user && user.isAdmin && (
               <>
                 <Link
@@ -295,7 +273,6 @@ const Header = () => {
               </>
             )}
 
-            {/* لو مش مسجل خالص، تظهر أزرار التسجيل في قايمة الموبايل */}
             {!user && (
               <div className="flex flex-col space-y-2 pt-2">
                 <Link
@@ -318,7 +295,6 @@ const Header = () => {
         </div>
       </header>
 
-      {/* المودالات */}
       {activeModal === "edit" && (
         <div className="fixed inset-0 bg-black/60 backdrop-blur-xs flex items-center justify-center z-[150] p-4 overflow-y-auto">
           <div className="bg-[#fdfbf7] border border-[#d4af37]/40 rounded-2xl shadow-2xl max-w-md w-full p-6 relative animate-fadeIn my-auto">
