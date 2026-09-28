@@ -31,7 +31,6 @@ const Carousel = ({ data }) => {
         }}
       />
       
-      {/* مؤشرات الصور (Dots) تحت لو حبيت توضح للعميل هو في أنهي صورة */}
       {data.length > 1 && (
         <div style={{ position: "absolute", bottom: "10px", left: "50%", transform: "translateX(-50%)", display: "flex", gap: "6px" }}>
           {data.map((_, idx) => (

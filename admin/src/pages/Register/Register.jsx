@@ -81,7 +81,6 @@ const Register = () => {
           </h1>
 
           <form onSubmit={handleSubmit} className="space-y-5">
-            {/* Name */}
             <div>
               <label
                 htmlFor="name"
